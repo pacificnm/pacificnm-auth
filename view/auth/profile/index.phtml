@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col-md-3">
+		<!-- Profile Image -->
+		<div class="box box-primary">
+			<div class="box-body box-profile">
+				<img class="profile-user-img img-responsive img-circle"
+					src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+				<h3 class="profile-username text-center"><?php echo $this->entity->getAuthName(); ?></h3>
+
+				<p class="text-muted text-center"><?php echo ucwords($this->entity->getAclRoleEntity()->getAclRoleName()); ?></p>
+
+				<ul class="list-group list-group-unbordered">
+					<li class="list-group-item"><b><?php echo $this->translate('E-Mail'); ?>:</b> 
+						<a class="pull-right"><?php echo $this->entity->getAuthEmail(); ?></a>
+					</li>
+					<li class="list-group-item"><b><?php echo $this->translate('Last Sign In'); ?>:</b> 
+						<a class="pull-right"><?php echo date($this->appConfig()->getConfigDateLong(), $this->entity->getAuthLastLogin()); ?></a>
+					</li>
+					<li class="list-group-item"><b><?php echo $this->translate('Last IP Address'); ?>:</b> 
+						<a class="pull-right"><?php echo $this->entity->getAuthLastIp();?></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-9">
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="<?php echo $this->url("auth-profile-index"); ?>" title="<?php echo $this->translate("Activity"); ?>">
+						<i class="fa fa-history"></i> <?php echo $this->translate("Activity"); ?>
+					</a>
+				</li>
+				<li>
+					<a href="<?php echo $this->url("auth-profile-update"); ?>" title="<?php echo $this->translate("Settings"); ?>">
+						<i class="fa fa-gear"></i> <?php echo $this->translate("Settings"); ?>
+					</a>
+				</li>
+				<li><a href="<?php echo $this->url("auth-profile-password"); ?>" title="<?php echo $this->translate("Password")?>">
+						<i class="fa fa-lock"></i> <?php echo $this->translate("Password"); ?>
+					</a>
+				</li>	
+			</ul>
+			<div class="tab-content">
+				<div class="active tab-pane" id="activity">
+					<div class="alert alert-info">
+						<p><i class="fa fa-info-circle"></i> <?php echo $this->translate('No history'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

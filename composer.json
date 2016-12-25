@@ -1,0 +1,19 @@
+{
+    "name": "pacificnm/pacificnm-auth",
+    "description": "Provides authentication functions",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Jaimie Garner",
+            "email": "pacificnm@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    	"php" : ">=5.5",
+    	"zendframework/zendframework" : "~2.5",
+    	"pacificnm/pacificnm-acl" : "dev-master",
+    	"pacificnm/pacificnm-config" : "dev-master"
+    }
+}

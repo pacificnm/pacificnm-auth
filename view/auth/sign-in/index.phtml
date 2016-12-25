@@ -1,0 +1,37 @@
+<p class="login-box-msg"><?php echo $this->translate('Sign in to start your session');?></p>
+<?php echo $this->form()->openTag($this->form); ?>
+<?php echo $this->partial('partials/form-errors.phtml', array('errorMsg' => $this->form->getMessages())); ?>
+
+<?php $element = $this->form->get('authEmail'); ?>
+<div class="form-group has-feedback <?php if($this->formElementErrors($element)) echo "has-error" ?>">
+	<?php echo $this->formElement($element); ?>
+	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+</div>
+
+<?php $element = $this->form->get('authPassword'); ?>
+<div class="form-group has-feedback <?php if($this->formElementErrors($element)) echo "has-error" ?>">
+	<?php echo $this->formElement($element); ?>
+	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+</div>
+
+
+<?php echo $this->formSubmit($this->form->get('submit')); ?>
+<?php echo $this->form()->closeTag(); ?>
+
+<br />
+<p class="login-box-msg">
+	<?php if($this->appConfig()->getConfigRegister() == 1): ?>
+	<a href="<?php echo $this->url('auth-register-index'); ?>" 
+		title="<?php echo $this->translate('Register'); ?>">
+		<?php echo $this->translate('Register'); ?>
+	</a>
+	<?php endif; ?>
+	
+	<?php if($this->appConfig()->getConfigResetPassword()): ?>
+	<a href="<?php echo $this->url('auth-reset-password-index'); ?>" 
+		title="<?php echo $this->translate('I forgot my password'); ?>">
+		<?php echo $this->translate('I forgot my password'); ?>
+	</a>
+	<?php endif; ?>
+	<br>
+</p>

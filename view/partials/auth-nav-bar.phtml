@@ -1,0 +1,52 @@
+<?php if($this->identity()):?>
+<li class="dropdown user user-menu">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+		<span class="hidden-xs"><?php echo $this->identity()->getAuthName(); ?></span>
+	</a>
+	<ul class="dropdown-menu">
+		<!-- User image -->
+		<li class="user-header">
+			<img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+			<p><?php echo $this->identity()->getAuthName(); ?> - 
+				<small>Member since Nov. 2012</small>
+			</p>
+		</li>
+		
+		<!-- Menu Footer-->
+		<li class="user-footer">
+			<div class="pull-left">
+				<a href="<?php echo $this->url('auth-profile-index'); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('My Profile'); ?></a>
+			</div>
+			<div class="pull-right">
+				<a href="<?php echo $this->url('auth-sign-out'); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Sign out'); ?></a>
+			</div>
+		</li>
+	</ul>
+</li>
+<?php else: ?>
+<li class="dropdown user user-menu">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+		<span class="hidden-xs"><?php echo $this->translate('Guest'); ?></span>
+	</a>
+	<ul class="dropdown-menu">
+		<!-- User image -->
+		<li class="user-header">
+			<img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+			<p>
+				<?php echo $this->translate('Guest'); ?>
+			</p>
+		</li>
+		<!-- Menu Footer-->
+		<li class="user-footer">
+			<div class="pull-left">
+				<a href="" class="btn btn-default btn-flat"><?php echo $this->translate('Register'); ?></a>
+			</div>
+			<div class="pull-right">
+				<a href="<?php echo $this->url('auth-sign-in'); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Sign in'); ?></a>
+			</div>
+		</li>
+	</ul>
+</li>
+<?php endif;?>
