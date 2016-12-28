@@ -4,7 +4,7 @@ return array(
     'module' => array(
         'Auth' => array(
             'name' => 'Auth',
-            'version' => '1.0.0',
+            'version' => '1.0.3',
             'install' => array(
                 'require' => array(),
                 'sql' => 'sql/auth.sql'
@@ -47,6 +47,8 @@ return array(
                 'pageSubTitle' => 'Home',
                 'activeMenuItem' => 'auth-profile-index',
                 'activeSubMenuItem' => 'auth-profile-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'profile',
                 'options' => array(
                     'route' => '/my-profile',
                     'defaults' => array(
@@ -61,6 +63,8 @@ return array(
                 'pageSubTitle' => 'Settings',
                 'activeMenuItem' => 'auth-profile-index',
                 'activeSubMenuItem' => 'auth-profile-update',
+                'icon' => 'fa fa-user',
+                'layout' => 'profile',
                 'options' => array(
                     'route' => '/my-profile/update',
                     'defaults' => array(
@@ -75,6 +79,8 @@ return array(
                 'pageSubTitle' => 'Password',
                 'activeMenuItem' => 'auth-profile-index',
                 'activeSubMenuItem' => 'auth-profile-password',
+                'icon' => 'fa fa-user',
+                'layout' => 'profile',
                 'options' => array(
                     'route' => '/my-profile/password',
                     'defaults' => array(
@@ -89,6 +95,8 @@ return array(
                 'pageSubTitle' => 'Home',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-reset-password-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'sign-in',
                 'options' => array(
                     'route' => '/reset-password',
                     'defaults' => array(
@@ -103,6 +111,8 @@ return array(
                 'pageSubTitle' => 'Home',
                 'activeMenuItem' => 'auth-register-index',
                 'activeSubMenuItem' => 'auth-register-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'register',
                 'options' => array(
                     'route' => '/register',
                     'defaults' => array(
@@ -116,6 +126,8 @@ return array(
                 'pageSubTitle' => '',
                 'activeMenuItem' => '',
                 'activeSubMenuItem' => '',
+                'icon' => 'fa fa-lock',
+                'layout' => 'sign-in',
                 'type' => 'literal',
                 'options' => array(
                     'route' => '/sign-in',
@@ -131,6 +143,8 @@ return array(
                 'pageSubTitle' => '',
                 'activeMenuItem' => '',
                 'activeSubMenuItem' => '',
+                'icon' => 'fa fa-lock',
+                'layout' => 'admin',
                 'type' => 'literal',
                 'options' => array(
                     'route' => '/sign-out',
@@ -145,6 +159,8 @@ return array(
                 'pageSubTitle' => 'Home',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'literal',
                 'options' => array(
                     'route' => '/admin/auth',
@@ -159,6 +175,8 @@ return array(
                 'pageSubTitle' => 'New',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'literal',
                 'options' => array(
                     'route' => '/admin/auth/create',
@@ -173,6 +191,8 @@ return array(
                 'pageSubTitle' => 'Edit',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/admin/auth/update/[:id]',
@@ -190,6 +210,8 @@ return array(
                 'pageSubTitle' => 'View',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/admin/auth/view/[:id]',
@@ -207,6 +229,8 @@ return array(
                 'pageSubTitle' => 'Delete',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/admin/auth/delete/[:id]',
@@ -224,6 +248,8 @@ return array(
                 'pageSubTitle' => 'Password',
                 'activeMenuItem' => 'admin-index',
                 'activeSubMenuItem' => 'auth-index',
+                'icon' => 'fa fa-user',
+                'layout' => 'admin',
                 'type' => 'segment',
                 'options' => array(
                     'route' => '/admin/auth/password/[:id]',
@@ -242,6 +268,9 @@ return array(
         'invokables' => array(
             'AuthNavBar' => 'Auth\View\Helper\AuthNavBar',
             'AuthAside' => 'Auth\View\Helper\AuthAside'
+        ),
+        'factories' => array(
+            'AuthSearchForm' => 'Auth\View\Helper\Factory\AuthSearchFormFactory'
         )
     ),
     'view_manager' => array(
@@ -344,6 +373,7 @@ return array(
                 'name' => 'My Profile',
                 'icon' => 'fa fa-user',
                 'order' => 1,
+                'location' => 'left',
                 'active' => true,
                 'items' => array(
                     array(
@@ -374,12 +404,13 @@ return array(
                 'name' => 'Admin',
                 'icon' => 'fa fa-gear',
                 'order' => 99,
+                'location' => 'left',
                 'active' => true,
                 'items' => array(
                     array(
                         'name' => 'Auth',
                         'route' => 'auth-index',
-                        'icon' => 'fa fa-lock',
+                        'icon' => 'fa fa-user',
                         'order' => 3,
                         'active' => true,
                     )
