@@ -164,11 +164,28 @@ class MysqlMapper extends AbstractMysqlMapper implements MysqlMapperInterface
      */
     protected function filter($filter)
     {
+        // authName
+        if (array_key_exists('authName', $filter) && strlen($filter['authName']) > 0) {
+            $this->select->where->like('auth.auth_name', $filter['authName'] . '%');
+        }
+        
+        // authEmail
+        if (array_key_exists('authEmail', $filter) && strlen($filter['authEmail']) > 0) {
+            $this->select->where->like('auth.auth_email', $filter['authEmail'] . '%');
+        }
+       
+        // aclRoleId
+        if(array_key_exists('aclRoleId', $filter) && $filter['aclRoleId'] > 0) {
+            $this->select->where(array(
+                'auth.acl_role_id = ?' => $filter['aclRoleId']
+            ));
+        }
+        
         return $this;
     }
-    
+
     /**
-     * 
+     *
      * @return \Auth\Mapper\MysqlMapper
      */
     protected function joinAclRole()

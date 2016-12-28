@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `auth` (
   `auth_name` varchar(100) NOT NULL,
   `auth_last_login` int(11) NOT NULL,
   `auth_last_ip` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 --
 -- Indexes for dumped tables

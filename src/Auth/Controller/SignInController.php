@@ -1,7 +1,7 @@
 <?php
 namespace Auth\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Application\Controller\AbstractApplicationController;
 use Zend\View\Model\ViewModel;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Result;
@@ -12,7 +12,8 @@ use Auth\Adapter\AuthAdapter;
 use Auth\Form\SignInForm;
 use Auth\Service\ServiceInterface;
 
-class SignInController extends AbstractActionController
+
+class SignInController extends AbstractApplicationController
 {
 
     /**
@@ -65,6 +66,8 @@ class SignInController extends AbstractActionController
      */
     public function indexAction()
     {
+        parent::indexAction();
+        
         $this->layout('/layout/sign-in.phtml');
         
         // get request object

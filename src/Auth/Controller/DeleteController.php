@@ -1,71 +1,75 @@
 <?php
 namespace Auth\Controller;
 
-use Application\Controller\BaseController;
-use Auth\Service\AuthServiceInterface;
 use Zend\View\Model\ViewModel;
+use Application\Controller\AbstractApplicationController;
+use Auth\Service\ServiceInterface;
 
-class DeleteController extends BaseController
+class DeleteController extends AbstractApplicationController
 {
+
     /**
      *
-     * @var AuthServiceInterface
+     * @var ServiceInterface
      */
-    protected $authService;
-    
+    protected $service;
+
     /**
      *
-     * @param AuthServiceInterface $authService
+     * @param ServiceInterface $service            
      */
-    public function __construct(AuthServiceInterface $authService)
+    public function __construct(ServiceInterface $service)
     {
-        $this->authService = $authService;
+        $this->service = $service;
     }
-    
+
     /**
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
     public function indexAction()
     {
-        $this->layout()->setVariable('pageTitle', 'Auth');
-    
-        $this->layout()->setVariable('pageSubTitle', 'Delete');
-    
-        $this->layout()->setVariable('activeMenuItem', 'admin');
-    
-        $this->layout()->setVariable('activeSubMenuItem', 'auth-index');
-    
-        $id = $this->params()->fromRoute('authId');
-    
-        $authEntity = $this->authService->get($id);
-    
-        if(! $authEntity) {
+        parent::indexAction();
+        
+        $request = $this->getRequest();
+        
+        $id = $this->params()->fromRoute('id');
+        
+        $entity = $this->service->get($id);
+        
+        if (! $entity) {
             $this->flashmessenger()->addErrorMessage('Unable to find the auth ' . $id);
             
             return $this->redirect()->toRoute('auth-index');
         }
-    
-        $request = $this->getRequest();
         
         if ($request->isPost()) {
             $del = $request->getPost('delete_confirmation', 'no');
-        
+            
             if ($del === 'yes') {
-               
-                $this->authService->delete($authEntity);
+                
+                $this->service->delete($entity);
+                
+                $this->getEventManager()->trigger('authDelete', $this, array(
+                    'authId' => $this->identity()->getAuthId(),
+                    'requestUrl' => $this->getRequest()->getUri(),
+                    'authEntity' => $entity
+                ));
                 
                 $this->flashmessenger()->addSuccessMessage('The auth was deleted');
                 
                 return $this->redirect()->toRoute('auth-index');
             }
             
-            return $this->redirect()->toRoute('auth-view', array('authId' => $authEntity->getAuthId()));
+            return $this->redirect()->toRoute('auth-view', array(
+                'authId' => $entity->getAuthId()
+            ));
         }
-    
+        
         return new ViewModel(array(
-            'authEntity' => $authEntity
+            'entity' => $entity
         ));
     }
 }

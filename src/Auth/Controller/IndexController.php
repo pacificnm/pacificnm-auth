@@ -40,6 +40,9 @@ class IndexController extends AbstractApplicationController
         $filter = array(
             'page' => $this->page,
             'count-per-page' => $this->countPerPage,
+            'authName' => $this->params()->fromQuery('authName', null),
+            'authEmail' => $this->params()->fromQuery('authEmail', null),
+            'aclRoleId' => $this->params()->fromQuery('aclRoleId', null),
         );
         
         $paginator = $this->service->getAll($filter);
