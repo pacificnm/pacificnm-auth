@@ -11,9 +11,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-    	"php" : ">=5.5",
-    	"zendframework/zendframework" : "~2.5",
-    	"pacificnm/pacificnm-acl" : "dev-master",
-    	"pacificnm/pacificnm-config" : "dev-master"
+    	"php" : ">=5.5"
     }
 }
