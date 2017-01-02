@@ -45,9 +45,44 @@
 			</ul>
 			<div class="tab-content">
 				<div class="active tab-pane" id="activity">
+					<?php if($this->paginator->count() == 0): ?>
 					<div class="alert alert-info">
 						<p><i class="fa fa-info-circle"></i> <?php echo $this->translate('No history'); ?>
 					</div>
+					<?php else: ?>
+					<table class="table table-bordered table-hover table-striped table-condensed">
+						<thead>
+							<tr>
+								<th><?php echo $this->translate("Time"); ?></th>
+								<th><?php echo $this->translate("Request"); ?></th>
+								<th><?php echo $this->translate("Type"); ?></th>
+								<th><?php echo $this->translate("Ip Address"); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach($this->paginator as $entity): ?>
+								<tr>
+									<td><?php echo date($this->appConfig()->getConfigDateLong(), $entity->getHistoryRequestTime()); ?></td>
+									<td><?php echo $entity->getHistoryRequest(); ?></td>
+									<td><?php echo $entity->getHistoryRequestType(); ?></td>
+									<td><?php echo $entity->getHistoryRemoteAddress(); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+						</tbody>
+					</table>
+					<div class="row">
+					<div class="col-xs-12 text-center">
+						<?php echo $this->Paginator(
+							$this->itemCountPerPage, 
+							$this->itemCount, 
+							$this->pageCount, 
+                            $this->page, 
+                            $this->routeParams,
+                            $this->queryParams);
+                        ?>
+					</div>
+				</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

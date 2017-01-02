@@ -11,6 +11,7 @@ namespace Pacificnm\Auth\Controller;
 use Zend\View\Model\ViewModel;
 use Pacificnm\Controller\AbstractApplicationController;
 use Pacificnm\Auth\Service\ServiceInterface;
+use Pacificnm\History\Service\ServiceInterface as HistoryServiceInterface;
 
 class ProfileController extends AbstractApplicationController
 {
@@ -22,12 +23,20 @@ class ProfileController extends AbstractApplicationController
     protected $service;
 
     /**
+     * 
+     * @var HistoryServiceInterface
+     */
+    protected $historyService;
+    
+    /**
      *
      * @param ServiceInterface $service            
      */
-    public function __construct(ServiceInterface $service)
+    public function __construct(ServiceInterface $service,  HistoryServiceInterface $historyService)
     {
         $this->service = $service;
+        
+        $this->historyService = $historyService;
     }
 
     /**
@@ -57,8 +66,28 @@ class ProfileController extends AbstractApplicationController
             'authEntity' => $entity
         ));
         
+        $filter = array(
+            'page' => $this->page,
+            'count-per-page' => $this->countPerPage,
+            'authId' => $this->identity()->getAuthId(),
+            'historyRequestTimeDesc' => 1
+        ); 
+        
+        $paginator = $this->historyService->getAll($filter);
+        
+        $paginator->setCurrentPageNumber($filter['page']);
+        
+        $paginator->setItemCountPerPage($filter['count-per-page']);
+        
         return new ViewModel(array(
-            'entity' => $entity
+            'entity' => $entity,
+            'paginator' => $paginator,
+            'page' => $filter['page'],
+            'count-per-page' => $filter['count-per-page'],
+            'itemCount' => $paginator->getTotalItemCount(),
+            'pageCount' => $paginator->count(),
+            'queryParams' => $this->params()->fromQuery(),
+            'routeParams' => $this->params()->fromRoute()
         ));
     }
 }
