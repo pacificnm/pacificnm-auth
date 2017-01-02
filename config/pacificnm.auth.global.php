@@ -10,7 +10,7 @@ return array(
     'module' => array(
         'Auth' => array(
             'name' => 'Auth',
-            'version' => '1.0.5',
+            'version' => '1.0.6',
             'install' => array(
                 'require' => array(),
                 'sql' => 'sql/auth.sql'
@@ -305,6 +305,7 @@ return array(
         'default' => array(
             'guest' => array(
                 'auth-sign-in',
+                'auth-sign-out',
                 'auth-register-index',
                 'auth-reset-password-index'
             ),
@@ -313,6 +314,7 @@ return array(
                 'auth-profile-update',
                 'auth-profile-password',
                 'auth-sign-out',
+                'auth-sign-in'
             ),
             'administrator' => array(
                 'auth-index',
@@ -324,6 +326,8 @@ return array(
                 'auth-profile-index',
                 'auth-profile-update',
                 'auth-profile-password',
+                'auth-sign-out',
+                'auth-sign-in'
             )
         )
     ),

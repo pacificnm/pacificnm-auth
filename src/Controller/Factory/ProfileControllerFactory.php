@@ -25,7 +25,9 @@ class ProfileControllerFactory
         
         $service = $realServiceLocator->get('Pacificnm\Auth\Service\ServiceInterface');
         
-        return new ProfileController($service);
+        $historyService = $realServiceLocator->get('Pacificnm\History\Service\ServiceInterface');
+        
+        return new ProfileController($service, $historyService);
     }
 }
 
