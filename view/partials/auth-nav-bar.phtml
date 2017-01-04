@@ -40,9 +40,11 @@
 		</li>
 		<!-- Menu Footer-->
 		<li class="user-footer">
+			<?php if($this->appConfig()->getConfigRegister() == 1): ?>
 			<div class="pull-left">
-				<a href="" class="btn btn-default btn-flat"><?php echo $this->translate('Register'); ?></a>
+				<a href="<?php echo $this->url('auth-register-index'); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Register'); ?></a>
 			</div>
+			<?php endif; ?>
 			<div class="pull-right">
 				<a href="<?php echo $this->url('auth-sign-in'); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Sign in'); ?></a>
 			</div>
