@@ -4,59 +4,51 @@
 			<div class="box-header">
 				<h3 class="box-title">
 					<i class="<?php echo $this->layout()->pageIcon; ?>" aria-hidden="true"></i>
-					<?php echo $this->translate('Edit Auth'); ?>
+					<?php echo $this->translate("Edit Auth"); ?>
 				</h3>
 				<div class="box-tools"></div>
 			</div>
 			<div class="box-body">
 				<?php echo $this->form()->openTag($this->form); ?>
-				<?php echo $this->partial('partials/form-errors.phtml', array('errorMsg' => $this->form->getMessages())); ?>
+				
+				<?php echo $this->partial("partials/form-errors.phtml", array("errorMsg" => $this->form->getMessages())); ?>
 				
 				<div class="row">
               		<div class="col-xs-12">
-						<?php $element = $this->form->get('authName'); ?>
-						<div class="form-group <?php if($this->formElementErrors($element)) echo "has-error has-feedback" ?>">
-							<label class="control-label"><?php echo $element->getLabel() ?></label>
-							<?php echo $this->formElement($element); ?>
-							<?php if($this->formElementErrors($element)): ?>
-								<span class="text-danger"><?php echo $this->formElementErrors($element) ?> </span>
-							<?php endif; ?>
-						</div>
-              		</div>
+              			<?php echo $this->formElementDisplay($this->form->get("authEmail")); ?>
+					</div>
               	</div>
               	
               	<div class="row">
               		<div class="col-xs-12">
-						<?php $element = $this->form->get('authEmail'); ?>
-						<div class="form-group <?php if($this->formElementErrors($element)) echo "has-error has-feedback" ?>">
-							<label class="control-label"><?php echo $element->getLabel() ?></label>
-							<?php echo $this->formElement($element); ?>
-							<?php if($this->formElementErrors($element)): ?>
-								<span class="text-danger"><?php echo $this->formElementErrors($element) ?> </span>
-							<?php endif; ?>
-						</div>
-              		</div>
+              			<?php echo $this->formElementDisplay($this->form->get("authName")); ?>
+					</div>
               	</div>
               	
               	<div class="row">
-              		<div class="col-xs-12 col-sm-4">
-						<?php $element = $this->form->get('aclRoleId'); ?>
-						<div class="form-group <?php if($this->formElementErrors($element)) echo "has-error has-feedback" ?>">
-							<label class="control-label"><?php echo $element->getLabel() ?></label>
-							<?php echo $this->formElement($element); ?>
-							<?php if($this->formElementErrors($element)): ?>
-								<span class="text-danger"><?php echo $this->formElementErrors($element) ?> </span>
-							<?php endif; ?>
-						</div>
-              		</div>
+              		<div class="col-xs-12">
+              			<?php echo $this->formElementDisplay($this->form->get("authPassword")); ?>
+					</div>
               	</div>
               	
+              	<div class="row">
+              		<div class="col-xs-12">
+              			<?php echo $this->formElementDisplay($this->form->get("aclRoleId")); ?>
+					</div>
+              	</div>
+              	
+              	<div class="row">
+              		<div class="col-xs-12">
+              			<?php echo $this->formElementDisplay($this->form->get("submit")); ?>
+              		</div>
+              	</div>
 				
-				<?php echo $this->formElement($this->form->get('authId')); ?>
-				<?php echo $this->formElement($this->form->get('authPassword')); ?>
-				<?php echo $this->formElement($this->form->get('authLastLogin')); ?>
-				<?php echo $this->formElement($this->form->get('authLastIp')); ?>
-				<?php echo $this->formSubmit($this->form->get('submit')); ?>
+				<?php echo $this->formElementDisplay($this->form->get("authId")); ?>
+				
+				<?php echo $this->formElementDisplay($this->form->get("authLastLogin")); ?>
+				
+				<?php echo $this->formElementDisplay($this->form->get("authLastIp")); ?>
+				
 				<?php echo $this->form()->closeTag(); ?>
 			</div>
 		</div>

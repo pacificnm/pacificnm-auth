@@ -10,7 +10,7 @@ return array(
     'module' => array(
         'Auth' => array(
             'name' => 'Auth',
-            'version' => '1.0.6',
+            'version' => '1.0.7',
             'install' => array(
                 'require' => array(),
                 'sql' => 'sql/auth.sql'

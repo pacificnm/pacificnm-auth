@@ -11,13 +11,13 @@
 				<p class="text-muted text-center"><?php echo ucwords($this->entity->getAclRoleEntity()->getAclRoleName()); ?></p>
 
 				<ul class="list-group list-group-unbordered">
-					<li class="list-group-item"><b><?php echo $this->translate('E-Mail'); ?>:</b> 
+					<li class="list-group-item"><b><?php echo $this->translate("E-Mail"); ?>:</b> 
 						<a class="pull-right"><?php echo $this->entity->getAuthEmail(); ?></a>
 					</li>
-					<li class="list-group-item"><b><?php echo $this->translate('Last Sign In'); ?>:</b> 
+					<li class="list-group-item"><b><?php echo $this->translate("Last Sign In"); ?>:</b> 
 						<a class="pull-right"><?php echo date($this->appConfig()->getConfigDateLong(), $this->entity->getAuthLastLogin()); ?></a>
 					</li>
-					<li class="list-group-item"><b><?php echo $this->translate('Last IP Address'); ?>:</b> 
+					<li class="list-group-item"><b><?php echo $this->translate("Last IP Address"); ?>:</b> 
 						<a class="pull-right"><?php echo $this->entity->getAuthLastIp();?></a>
 					</li>
 				</ul>
@@ -47,7 +47,7 @@
 				<div class="active tab-pane" id="activity">
 					<?php if($this->paginator->count() == 0): ?>
 					<div class="alert alert-info">
-						<p><i class="fa fa-info-circle"></i> <?php echo $this->translate('No history'); ?>
+						<p><i class="fa fa-info-circle"></i> <?php echo $this->translate("No history"); ?>
 					</div>
 					<?php else: ?>
 					<table class="table table-bordered table-hover table-striped table-condensed">
